@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something Special Awaits 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hearts-background"></div>
+    <div class="sparkles"></div>
+    
+    <div class="container">
+        <div class="header-icon pulse">💝</div>
+        <h1 class="main-title">Happy Valentine's Day Zayin!</h1>
+        <p class="intro">Answer these questions about our journey together to unlock something magical...</p>
+        
+        <form id="loveQuiz" class="quiz-form">
+            <div class="question-card fade-in" style="animation-delay: 0.1s">
+                <div class="question-number">01</div>
+                <label class="question-label">
+                    <span class="emoji">📅</span>
+                    <span class="text">Where did we first meet?</span>
+                </label>
+                <input 
+                    type="text" 
+                    name="q1" 
+                    placeholder="coffee date?" 
+                    required 
+                    autocomplete="off"
+                    aria-label="Where we first met">
+                <span class="error-message" role="alert"></span>
+            </div>
+            
+            <div class="question-card fade-in" style="animation-delay: 0.2s">
+                <div class="question-number">02</div>
+                <label class="question-label">
+                    <span class="emoji">🎵</span>
+                    <span class="text">What party did we meet again?</span>
+                </label>
+                <input 
+                    type="text" 
+                    name="q2" 
+                    placeholder="first day of the year" 
+                    required 
+                    autocomplete="off"
+                    aria-label="New-Year party location">
+                <span class="error-message" role="alert"></span>
+            </div>
+            
+            <div class="question-card fade-in" style="animation-delay: 0.3s">
+                <div class="question-number">03</div>
+                <label class="question-label">
+                    <span class="emoji">💋</span>
+                    <span class="text">How many years have we been together?</span>
+                </label>
+                <input 
+                    type="text" 
+                    name="q3" 
+                    placeholder="yari ka pag di mo nasagot" 
+                    required 
+                    autocomplete="off"
+                    aria-label="How many years we've been together">
+                <span class="error-message" role="alert"></span>
+            </div>
+            
+            <button type="submit" class="btn-submit fade-in" style="animation-delay: 0.4s">
+                <span class="btn-text">Unlock My Surprise</span>
+                <span class="btn-icon">💕</span>
+            </button>
+        </form>
+        
+        <div class="progress-dots" aria-hidden="true">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        
+        <div class="footer-text">Made with love, just for you 💖</div>
+    </div>
+    
+    <!-- Menu Modal (hidden by default) -->
+    <div id="menuModal" class="menu-modal hidden">
+        <div class="menu-container">
+            <div class="menu-header">
+                <h2>💕 Our Journey Together 💕</h2>
+                <p>Choose what you'd like to explore...</p>
+            </div>
+            
+            <div class="menu-options">
+                <button class="menu-option" data-option="photos">
+                    <div class="option-icon">📸</div>
+                    <div class="option-content">
+                        <h3>Our Photos</h3>
+                        <p>Beautiful memories we've captured</p>
+                    </div>
+                    <div class="option-arrow">→</div>
+                </button>
+                
+                <button class="menu-option" data-option="timeline">
+                    <div class="option-icon">📅</div>
+                    <div class="option-content">
+                        <h3>Our Timeline</h3>
+                        <p>Special moments & milestones</p>
+                    </div>
+                    <div class="option-arrow">→</div>
+                </button>
+                
+                <button class="menu-option valentine-option" data-option="valentine">
+                    <div class="option-icon">💝</div>
+                    <div class="option-content">
+                        <h3>Valentine's Date?</h3>
+                        <p>Will you be my Valentine?</p>
+                    </div>
+                    <div class="option-arrow">💕</div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photos Section -->
+    <div id="photosSection" class="content-section hidden">
+        <div class="section-container">
+            <button class="back-button">← Back to Menu</button>
+            <h2 class="section-title">📸 Our Beautiful Moments</h2>
+            
+            <div class="photos-grid">
+                <!-- Add your photos here -->
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <span>🖼️</span>
+                        <p>First Date</p>
+                    </div>
+                    <p class="photo-caption">The day everything began</p>
+                </div>
+                
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <span>🖼️</span>
+                        <p>Our Adventure</p>
+                    </div>
+                    <p class="photo-caption">Exploring the world together</p>
+                </div>
+                
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <span>🖼️</span>
+                        <p>Happy Times</p>
+                    </div>
+                    <p class="photo-caption">Laughing until we cried</p>
+                </div>
+                
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <span>🖼️</span>
+                        <p>Special Moment</p>
+                    </div>
+                    <p class="photo-caption">A memory I'll never forget</p>
+                </div>
+            </div>
+            
+            <p class="section-note">💡 Replace placeholders with your actual photos in the HTML</p>
+        </div>
+    </div>
+
+    <!-- Timeline Section -->
+    <div id="timelineSection" class="content-section hidden">
+        <div class="section-container">
+            <button class="back-button">← Back to Menu</button>
+            <h2 class="section-title">📅 Our Love Story Timeline</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">September 2016</div>
+                    <div class="timeline-content">
+                        <h3>💫 First Meeting</h3>
+                        <p>The day our eyes met at Coffee Project. I didn't know then that you'd become my everything.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">January 1, 2022</div>
+                    <div class="timeline-content">
+                        <h3>🎉 New Year's Party</h3>
+                        <p>When we met again at the party. Never did I expect that you'd glance and talk to me for the whole night. That made me know I wanted you to be mine.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">February 14, 2022</div>
+                    <div class="timeline-content">
+                        <h3>💕 First Valentine's Day</h3>
+                        <p>Our first Valentine's together. Having to meet the family and spend the day with you and them was amazing.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">April 20, 2022</div>
+                    <div class="timeline-content">
+                        <h3>🌟 You said Yes</h3>
+                        <p>I was commited to courting you until you were ready. But I guess you were ready too, because you said yes to me. I'm so grateful for that moment.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">January 19, 2023</div>
+                    <div class="timeline-content">
+                        <h3>🌟 Our First Adventure</h3>
+                        <p>Having to experience the sea and sand of La Union with you made it more special.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item highlight">
+                    <div class="timeline-date">February 14, 2026</div>
+                    <div class="timeline-content">
+                        <h3>💍 This Moment - Valentine's 2025</h3>
+                        <p>Today marks another chapter in our love story. Will you continue writing it with me? Happy Valentine's Day, my love! 💕</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Valentine's Date Section -->
+    <div id="valentineSection" class="content-section hidden">
+        <div class="section-container valentine-container">
+            <button class="back-button">← Back to Menu</button>
+            <div class="valentine-content">
+                <div class="valentine-icon">💝</div>
+                <h2 class="valentine-title">Will You Be My Valentine?</h2>
+                <p class="valentine-message">
+                    Every moment with you is a treasure. Every smile, every laugh, every shared silence.
+                    This Valentine's Day, I want to create more beautiful memories with you.
+                </p>
+                <p class="valentine-question">Will you be my Valentine's date?</p>
+                
+                <div class="valentine-buttons">
+                    <button class="valentine-btn yes-btn" id="yesBtn">
+                        Yes! 💕
+                    </button>
+                    <button class="valentine-btn no-btn" id="noBtn">
+                        Maybe... 🤔
+                    </button>
+                </div>
+                
+                <div id="responseMessage" class="response-message hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
