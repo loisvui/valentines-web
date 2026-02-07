@@ -14,11 +14,19 @@ const submitButton = form.querySelector('.btn-submit');
 // Track filled inputs for progress indication
 let filledCount = 0;
 
-// Add floating hearts periodically (simple emoji hearts)
+// Detect if user is on mobile device
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+const isSmallMobile = window.matchMedia("(max-width: 480px)").matches;
+
+// Adjust animation frequency based on device
+const heartInterval = isMobile ? 5000 : 3000; // Slower on mobile
+const sparkleInterval = isMobile ? 3000 : 2000; // Slower on mobile
+
+// Add floating hearts periodically (simple emoji hearts with flowers)
 function createFloatingHeart() {
     const heartsContainer = document.querySelector('.hearts-background');
     const heart = document.createElement('div');
-    const heartEmojis = ['💕', '💖', '💗', '💓', '💝', '💞'];
+    const heartEmojis = ['💕', '💖', '💗', '💓', '💝', '💞', '🌸', '🌺', '🪻'];
     
     heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
     heart.style.position = 'absolute';
@@ -35,20 +43,22 @@ function createFloatingHeart() {
     }, 15000);
 }
 
-// Create floating hearts at intervals
-setInterval(createFloatingHeart, 3000);
+// Create floating hearts at intervals (adjusted for mobile)
+setInterval(createFloatingHeart, heartInterval);
 
 // Add face sparkles periodically (her face image)
 function createSparkle() {
     const sparklesContainer = document.querySelector('.sparkles');
     const sparkle = document.createElement('img');
     
-    sparkle.src = 'face-float.jpg'; // Using her face image
+    sparkle.src = 'face-float.jpg'; // Using her face image (now properly rotated)
     sparkle.className = 'face-sparkle';
     sparkle.style.left = Math.random() * 100 + '%';
     sparkle.style.top = Math.random() * 100 + '%';
-    sparkle.style.width = (Math.random() * 20 + 30) + 'px'; // Random size 30-50px
-    sparkle.style.height = sparkle.style.width;
+    // Smaller size on mobile devices
+    const size = isSmallMobile ? (Math.random() * 15 + 25) : (Math.random() * 20 + 30);
+    sparkle.style.width = size + 'px';
+    sparkle.style.height = size + 'px';
     sparkle.style.opacity = '0';
     sparkle.style.animation = 'sparkle 3s ease-in-out';
     
@@ -59,7 +69,7 @@ function createSparkle() {
     }, 3000);
 }
 
-setInterval(createSparkle, 2000);
+setInterval(createSparkle, sparkleInterval);
 
 // Update progress dots
 function updateProgress() {
@@ -156,8 +166,9 @@ function displayErrors(errors) {
 
 // Show success message
 function showSuccess() {
-    // Create confetti effect
-    for (let i = 0; i < 50; i++) {
+    // Create confetti effect (reduced on mobile for performance)
+    const confettiCount = isMobile ? 30 : 50;
+    for (let i = 0; i < confettiCount; i++) {
         setTimeout(() => {
             createFloatingHeart();
             createSparkle();
@@ -171,16 +182,18 @@ function showSuccess() {
     const content = document.createElement('div');
     content.className = 'success-content';
     content.innerHTML = `
+        <div class="bouquet-container">
+            <div class="bouquet">💐</div>
+        </div>
         <h2>🎉 Perfect! 🎉</h2>
-        <p style="font-size: 2rem; margin: 30px 0;">💍</p>
-        <p style="font-size: 1.8rem; margin: 20px 0;">Congratulations 151!</p>
-        <p style="font-size: 1.2rem; margin-top: 30px; color: rgba(255,255,255,0.7);">
-            You know me better than anyone 💕
+        <p style="font-size: 1.8rem; margin: 20px 0;">Happy Valentine's Day!</p>
+        <p style="font-size: 1.2rem; margin-top: 20px; color: rgba(255,255,255,0.7);">
+            You're the best sweetbaby! 💕
         </p>
         <button id="continueBtn" style="
             margin-top: 40px;
             padding: 15px 40px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%);
             border: none;
             border-radius: 15px;
             color: white;
@@ -188,13 +201,19 @@ function showSuccess() {
             font-weight: 600;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
-            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
             transition: all 0.3s ease;
         ">Continue →</button>
     `;
     
     overlay.appendChild(content);
     document.body.appendChild(overlay);
+
+    // Animate the bouquet
+    setTimeout(() => {
+        const bouquet = document.querySelector('.bouquet');
+        bouquet.style.animation = 'bouquetAppear 1s ease-out forwards';
+    }, 500);
 
     // Add continuous heart rain
     const heartInterval = setInterval(() => {
@@ -284,8 +303,9 @@ const responseMessage = document.getElementById('responseMessage');
 
 if (yesBtn) {
     yesBtn.addEventListener('click', function() {
-        // Confetti explosion!
-        for (let i = 0; i < 100; i++) {
+        // Confetti explosion! (optimized for mobile)
+        const confettiCount = isMobile ? 50 : 100;
+        for (let i = 0; i < confettiCount; i++) {
             setTimeout(() => {
                 createFloatingHeart();
                 createSparkle();
@@ -310,7 +330,7 @@ if (yesBtn) {
         
         // Make the yes button even more special
         yesBtn.style.transform = 'scale(1.1)';
-        yesBtn.style.boxShadow = '0 20px 50px rgba(245, 87, 108, 0.6)';
+        yesBtn.style.boxShadow = '0 20px 50px rgba(168, 85, 247, 0.7)';
     });
 }
 
@@ -357,14 +377,26 @@ if (noBtn) {
         }
     });
     
-    // Reset no button position on hover
-    noBtn.addEventListener('mouseenter', function() {
-        if (noClickCount >= 3) {
-            const randomX = (Math.random() - 0.5) * 300;
-            const randomY = (Math.random() - 0.5) * 200;
-            this.style.transform = `translate(${randomX}px, ${randomY}px)`;
-        }
-    });
+    // Reset no button position on hover (desktop) or touch (mobile)
+    if (!isMobile) {
+        noBtn.addEventListener('mouseenter', function() {
+            if (noClickCount >= 3) {
+                const randomX = (Math.random() - 0.5) * 300;
+                const randomY = (Math.random() - 0.5) * 200;
+                this.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            }
+        });
+    } else {
+        // On mobile, move button on touch/click attempt
+        noBtn.addEventListener('touchstart', function(e) {
+            if (noClickCount >= 3) {
+                e.preventDefault();
+                const randomX = (Math.random() - 0.5) * 200;
+                const randomY = (Math.random() - 0.5) * 100;
+                this.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            }
+        });
+    }
 }
 
 // Add fadeOut animation
@@ -374,8 +406,67 @@ style.textContent = `
         from { opacity: 1; }
         to { opacity: 0; }
     }
+    
+    @keyframes bouquetAppear {
+        0% {
+            transform: translateY(100px) scale(0);
+            opacity: 0;
+        }
+        50% {
+            transform: translateY(-20px) scale(1.2);
+        }
+        100% {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+    
+    .bouquet-container {
+        margin-bottom: 20px;
+    }
+    
+    .bouquet {
+        font-size: 6rem;
+        display: inline-block;
+        filter: drop-shadow(0 10px 30px rgba(168, 85, 247, 0.5));
+        opacity: 0;
+    }
 `;
 document.head.appendChild(style);
+
+// ==================== VIDEO PLAYER FUNCTIONS ====================
+function playVideo() {
+    const videoModal = document.getElementById('videoModal');
+    const video = document.getElementById('golfVideo');
+    
+    videoModal.classList.remove('hidden');
+    video.play();
+    
+    // Prevent body scrolling when modal is open
+    document.body.style.overflow = 'hidden';
+}
+
+function closeVideo() {
+    const videoModal = document.getElementById('videoModal');
+    const video = document.getElementById('golfVideo');
+    
+    videoModal.classList.add('hidden');
+    video.pause();
+    video.currentTime = 0;
+    
+    // Restore body scrolling
+    document.body.style.overflow = '';
+}
+
+// Close video with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const videoModal = document.getElementById('videoModal');
+        if (!videoModal.classList.contains('hidden')) {
+            closeVideo();
+        }
+    }
+});
 
 // Form submission
 form.addEventListener('submit', function(e) {

@@ -126,41 +126,44 @@
             <h2 class="section-title">📸 Our Beautiful Moments</h2>
             
             <div class="photos-grid">
-                <!-- Add your photos here -->
+                <!-- Photo 1: Ramen Date -->
                 <div class="photo-card">
-                    <div class="photo-placeholder">
-                        <span>🖼️</span>
-                        <p>First Date</p>
-                    </div>
-                    <p class="photo-caption">The day everything began</p>
+                    <img src="photo1.jpg" alt="Our Ramen Date">
+                    <p class="photo-caption">Ramen date - just the two of us 🍜💕</p>
                 </div>
                 
+                <!-- Photo 2: First Birthday -->
                 <div class="photo-card">
-                    <div class="photo-placeholder">
-                        <span>🖼️</span>
-                        <p>Our Adventure</p>
-                    </div>
-                    <p class="photo-caption">Exploring the world together</p>
+                    <img src="photo2.jpg" alt="First Birthday Together">
+                    <p class="photo-caption">Your first birthday we celebrated together 🎂✨</p>
                 </div>
                 
+                <!-- Photo 3: First Picture -->
                 <div class="photo-card">
-                    <div class="photo-placeholder">
-                        <span>🖼️</span>
-                        <p>Happy Times</p>
-                    </div>
-                    <p class="photo-caption">Laughing until we cried</p>
+                    <img src="photo3.jpg" alt="Our First Picture">
+                    <p class="photo-caption">One of our first pictures together 📸💖</p>
                 </div>
                 
-                <div class="photo-card">
-                    <div class="photo-placeholder">
-                        <span>🖼️</span>
-                        <p>Special Moment</p>
+                <!-- Photo 4: Golf Video Thumbnail -->
+                <div class="photo-card video-card" onclick="playVideo()">
+                    <div class="video-container">
+                        <img src="photo4_thumb.jpg" alt="First Time Trying Golf">
+                        <div class="play-button">▶️</div>
                     </div>
-                    <p class="photo-caption">A memory I'll never forget</p>
+                    <p class="photo-caption">First time trying golf - April 29, 2023 ⛳💚</p>
                 </div>
             </div>
             
-            <p class="section-note">💡 Replace placeholders with your actual photos in the HTML</p>
+            <!-- Hidden video modal -->
+            <div id="videoModal" class="video-modal hidden" onclick="closeVideo()">
+                <div class="video-modal-content" onclick="event.stopPropagation()">
+                    <button class="close-video-btn" onclick="closeVideo()">✕</button>
+                    <video id="golfVideo" controls>
+                        <source src="first_time_trying_my_sport_golf_4-29-23.mp4" type="video/mp4">
+                        Your browser doesn't support video playback.
+                    </video>
+                </div>
+            </div>
         </div>
     </div>
 
